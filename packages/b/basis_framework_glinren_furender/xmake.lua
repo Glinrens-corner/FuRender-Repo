@@ -9,5 +9,6 @@ package("basis_framework_glinren_furender")
     add_versions("0.0.4-pre-alpha", "53287bba8e7db3c47a581c9c86cb2f55f61b43f4")
     on_install(function (package)
 	  import("package.tools.xmake").install(package, {"--modus=lib"})
+	  os.cp("*.hpp", package:installdir("include"))
     end)
  
