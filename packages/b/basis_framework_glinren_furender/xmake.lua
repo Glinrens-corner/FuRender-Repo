@@ -7,8 +7,12 @@ package("basis_framework_glinren_furender")
     add_versions("0.0.2-pre-alpha", "354fdb9a16237b793ebb603450e67e6804482fcc")
     add_versions("0.0.3-pre-alpha", "9873247ca3f43caf58df127ebdcc787199f69a45")
     add_versions("0.0.4-pre-alpha", "53287bba8e7db3c47a581c9c86cb2f55f61b43f4")
+    add_versions("0.0.5-pre-alpha", "481fb0c4a57c25654573686c77cdd0da8d6afc64")
     on_install(function (package)
-	  import("package.tools.xmake").install(package, {"--modus=lib"})
-	  os.cp("*.hpp", package:installdir("include"))
+
+	  local configs = {"--modus=lib"}
+	  if package:config("shared") then
+	     configs.kind = "shared"
+	  end
+	  import("package.tools.xmake").install(package, configs)
     end)
- 
